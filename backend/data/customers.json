@@ -1,0 +1,137 @@
+[
+  {
+    "customer_id": "CUST001",
+    "name": "Alice Johnson",
+    "email": "alice.johnson@email.com",
+    "tier": "premium",
+    "account_age_days": 1200,
+    "total_orders": 47,
+    "phone": "+1-555-0101"
+  },
+  {
+    "customer_id": "CUST002",
+    "name": "Bob Martinez",
+    "email": "bob.martinez@email.com",
+    "tier": "standard",
+    "account_age_days": 340,
+    "total_orders": 8,
+    "phone": "+1-555-0102"
+  },
+  {
+    "customer_id": "CUST003",
+    "name": "Carol White",
+    "email": "carol.white@email.com",
+    "tier": "premium",
+    "account_age_days": 2100,
+    "total_orders": 112,
+    "phone": "+1-555-0103"
+  },
+  {
+    "customer_id": "CUST004",
+    "name": "David Lee",
+    "email": "david.lee@email.com",
+    "tier": "standard",
+    "account_age_days": 90,
+    "total_orders": 2,
+    "phone": "+1-555-0104"
+  },
+  {
+    "customer_id": "CUST005",
+    "name": "Emma Davis",
+    "email": "emma.davis@email.com",
+    "tier": "standard",
+    "account_age_days": 730,
+    "total_orders": 21,
+    "phone": "+1-555-0105"
+  },
+  {
+    "customer_id": "CUST006",
+    "name": "Frank Wilson",
+    "email": "frank.wilson@email.com",
+    "tier": "premium",
+    "account_age_days": 950,
+    "total_orders": 63,
+    "phone": "+1-555-0106"
+  },
+  {
+    "customer_id": "CUST007",
+    "name": "Grace Taylor",
+    "email": "grace.taylor@email.com",
+    "tier": "standard",
+    "account_age_days": 180,
+    "total_orders": 5,
+    "phone": "+1-555-0107"
+  },
+  {
+    "customer_id": "CUST008",
+    "name": "Henry Brown",
+    "email": "henry.brown@email.com",
+    "tier": "standard",
+    "account_age_days": 420,
+    "total_orders": 14,
+    "phone": "+1-555-0108"
+  },
+  {
+    "customer_id": "CUST009",
+    "name": "Isabella Garcia",
+    "email": "isabella.garcia@email.com",
+    "tier": "premium",
+    "account_age_days": 1800,
+    "total_orders": 89,
+    "phone": "+1-555-0109"
+  },
+  {
+    "customer_id": "CUST010",
+    "name": "James Anderson",
+    "email": "james.anderson@email.com",
+    "tier": "standard",
+    "account_age_days": 60,
+    "total_orders": 1,
+    "phone": "+1-555-0110"
+  },
+  {
+    "customer_id": "CUST011",
+    "name": "Karen Thomas",
+    "email": "karen.thomas@email.com",
+    "tier": "standard",
+    "account_age_days": 550,
+    "total_orders": 18,
+    "phone": "+1-555-0111"
+  },
+  {
+    "customer_id": "CUST012",
+    "name": "Liam Jackson",
+    "email": "liam.jackson@email.com",
+    "tier": "premium",
+    "account_age_days": 1450,
+    "total_orders": 74,
+    "phone": "+1-555-0112"
+  },
+  {
+    "customer_id": "CUST013",
+    "name": "Mia Harris",
+    "email": "mia.harris@email.com",
+    "tier": "standard",
+    "account_age_days": 270,
+    "total_orders": 7,
+    "phone": "+1-555-0113"
+  },
+  {
+    "customer_id": "CUST014",
+    "name": "Noah Clark",
+    "email": "noah.clark@email.com",
+    "tier": "standard",
+    "account_age_days": 800,
+    "total_orders": 29,
+    "phone": "+1-555-0114"
+  },
+  {
+    "customer_id": "CUST015",
+    "name": "Olivia Lewis",
+    "email": "olivia.lewis@email.com",
+    "tier": "premium",
+    "account_age_days": 3000,
+    "total_orders": 156,
+    "phone": "+1-555-0115"
+  }
+]

@@ -1,0 +1,49 @@
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+.uv/
+
+# Node
+node_modules/
+.npm/
+
+# Next.js
+frontend/.next/
+frontend/out/
+frontend/.env.local
+frontend/.env.production
+frontend/tsconfig.tsbuildinfo
+
+# Docker volumes
+frontend_node_modules/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Planning docs
+Plan.md
+SPEC.md
+
+# Logs
+*.log
+npm-debug.log*
