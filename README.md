@@ -1,6 +1,6 @@
-# AI Customer Support Agent
+# AI Customer Assistant
 
-An AI-powered e-commerce refund agent that validates requests against a strict policy, processes or denies refunds autonomously, and streams its reasoning in real time — with optional voice input.
+An AI-powered e-commerce refund assistant that validates requests against a strict policy, processes or denies refunds autonomously, and streams its reasoning in real time — with optional voice input.
 
 ---
 
@@ -8,7 +8,7 @@ An AI-powered e-commerce refund agent that validates requests against a strict p
 
 Customer support teams spend a disproportionate amount of time on refund requests that have clear, rule-based answers. Most of these decisions are repetitive, yet they require human agents to look up orders, check policies, and apply judgment — creating inconsistency, delay, and cost.
 
-This project exists to show that an LLM agent, given the right tools and a well-defined policy, can handle these decisions **consistently, transparently, and at scale** — while still communicating with empathy. The admin reasoning log makes every decision auditable, so support managers can trust and verify the agent's behaviour rather than treat it as a black box.
+This project demonstrates that an LLM agent, given deterministic tools and a well-defined policy, can handle these decisions **consistently, transparently, and at scale** — while still communicating empathetically. The admin reasoning log makes every decision auditable, allowing support managers to verify agent actions rather than treating the model as a black box.
 
 ---
 
@@ -25,7 +25,7 @@ The system is built as a **tool-calling agent loop** using LangGraph. On each cu
 │                        BROWSER (port 3000)                      │
 │                                                                 │
 │  ┌──────────────────────┐      ┌──────────────────────────────┐ │
-│  │   Customer Chat UI   │      │      Admin Dashboard         │ │
+│  │   Customer Chat UI   │      │       Admin Dashboard        │ │
 │  │  (ChatInterface.tsx) │      │  (ReasoningLog + sessions)   │ │
 │  │  + VoiceInput.tsx    │      │  (admin/page.tsx)            │ │
 │  └──────────┬───────────┘      └──────────────┬───────────────┘ │
@@ -33,20 +33,20 @@ The system is built as a **tool-calling agent loop** using LangGraph. On each cu
 └─────────────┼─────────────────────────────────┼─────────────────┘
               │                                 │
 ┌─────────────▼─────────────────────────────────▼──────────────────┐
-│                      FASTAPI BACKEND (port 8000)                 │
+│                   FASTAPI BACKEND (port 8000)                    │
 │                                                                  │
-│   /api/chat  ──► SSE stream (tokens, tool_call, tool_result)     │
-│   /api/admin/logs  ──► WebSocket broadcast                       │
-│   /api/admin/sessions  ──► REST snapshot                         │
+│   /api/chat          ──► SSE stream (tokens, tool_call, result)  │
+│   /api/admin/logs    ──► WebSocket broadcast                     │
+│   /api/admin/sessions──► REST snapshot                           │
 │   /api/health                                                    │
 │                                                                  │
 │  ┌───────────────────────────────────────────────────────────┐   │
-│  │                  LANGGRAPH AGENT LOOP                     │   │
+│  │                    LANGGRAPH AGENT LOOP                   │   │
 │  │                                                           │   │
 │  │   ┌─────────┐    tool_calls?    ┌──────────────────────┐  │   │
-│  │   │  agent  │ ────── yes ──────►│      ToolNode        │  │   │
+│  │   │  agent  │ ────── yes ──────►│       ToolNode       │  │   │
 │  │   │ (Gemini │◄──── result ──────│                      │  │   │
-│  │   │   3.5)  │                   │  lookup_customer     │  │   │
+│  │   │   LLM)  │                   │  lookup_customer     │  │   │
 │  │   └────┬────┘                   │  lookup_order        │  │   │
 │  │        │ no tool calls          │  check_refund_policy │  │   │
 │  │        ▼                        │  process_refund      │  │   │
@@ -62,14 +62,10 @@ The system is built as a **tool-calling agent loop** using LangGraph. On each cu
 │                    └──────────────┘                              │
 └──────────────────────────────────────────────────────────────────┘
 
-         Voice Input ──► ElevenLabs STT ──► chat message
-```
 
-### Agent Tool Flow
-
+## Agent Tool Flow
 Every refund conversation follows this strict sequence enforced by the system prompt:
 
-```
 Customer message
       │
       ▼
@@ -84,38 +80,39 @@ check_refund_policy(situation description)
       ├── ELIGIBLE ──► process_refund(order_id, amount)
       │
       └── NOT ELIGIBLE ──► deny_refund(order_id, reason + policy rule)
-```
 
----
 
-## What
+## What Features
 
-### Features
 
-- **Conversational refund handling** — customers describe their issue in natural language
-- **Policy-grounded decisions** — agent checks a strict refund policy before every approve/deny
-- **Real-time reasoning log** — admin dashboard shows every tool call and result as it happens
-- **Voice input** — ElevenLabs speech-to-text lets customers speak instead of type
-- **Refund status badge** — visual APPROVED / DENIED / PENDING indicator per session
-- **Session memory** — LangGraph checkpointing maintains conversation context across turns
-- **Audit trail** — every session stores its full reasoning log and decision in memory
+Conversational refund handling — customers describe their issue in natural language
 
-### Tech Stack
+Policy-grounded decisions — agent checks a strict refund policy before every approve/deny
 
-| Layer | Technology |
-|---|---|
-| LLM | Google Gemini `gemini-3.5-flash-lite` |
-| Agent framework | LangGraph + LangChain |
-| Backend | FastAPI + Python 3.12 |
-| Streaming | Server-Sent Events (chat) + WebSocket (admin) |
-| Frontend | Next.js 15 (App Router) + Tailwind CSS |
-| Voice | ElevenLabs Speech-to-Text |
-| Container | Docker + Docker Compose |
+Real-time reasoning log — admin dashboard shows every tool call and result as it happens
 
-### Project Structure
+Voice input — ElevenLabs speech-to-text lets customers speak instead of type
 
-```
-AI_CustomerSupportAgent/
+Refund status badge — visual APPROVED / DENIED / PENDING indicator per session
+
+Session memory — LangGraph checkpointing maintains conversation context across turns
+
+
+## Tech Stack
+
+Layer                                          Technology
+
+LLMGoogle                                     Gemini gemini-3.5-flash-lite
+Agent framework                               LangGraph + LangChain
+Backend                                       FastAPI + Python 3.12
+Streaming                                     Server-Sent Events (chat) + WebSocket (admin)
+Frontend                                      Next.js 15 (App Router) + TailwindCSS
+Voice                                         ElevenLabs Speech-to-Text
+
+
+## Project Structure
+
+ai-customer-assistant/
 ├── backend/
 │   ├── agent/
 │   │   ├── graph.py        # LangGraph agent loop
@@ -131,8 +128,8 @@ AI_CustomerSupportAgent/
 ├── frontend/
 │   └── src/
 │       ├── app/
-│       │   ├── page.tsx          # Customer chat page
-│       │   └── admin/page.tsx    # Admin dashboard
+│       │   ├── page.tsx        # Customer chat page
+│       │   └── admin/page.tsx  # Admin dashboard
 │       └── components/
 │           ├── ChatInterface.tsx
 │           ├── VoiceInput.tsx
@@ -140,47 +137,26 @@ AI_CustomerSupportAgent/
 │           └── RefundBadge.tsx
 ├── docker-compose.yml
 └── .env.example
-```
 
----
 
-## Getting Started
+##Getting Started
 
-### Prerequisites
+*Prerequisites
 
-- [Docker + Docker Compose](https://docs.docker.com/get-docker/) — easiest path
-- Or: Python 3.12+ and Node.js 18+ for local dev
+Docker + Docker Compose
+Or: Python 3.12+ and Node.js 18+ for local development
 
-### 1. Clone and configure environment
 
-```bash
-git clone <repo-url>
-cd AI_CustomerSupportAgent
+
+## Clone and configure environment
+
+
+git clone [https://github.com/SyedAhad01/ai-customer-assistant.git](https://github.com/SyedAhad01/ai-customer-assistant.git)
+cd ai-customer-assistant
 cp .env.example .env
-```
 
-Open `.env` and fill in your keys:
 
-```env
-GOOGLE_API_KEY=your_google_api_key_here
-ELEVENLABS_API_KEY=...        # optional — voice input only
-ELEVENLABS_VOICE_ID=...       # optional — voice input only
-```
-
-### 2. Run with Docker (recommended)
-
-```bash
-docker-compose up --build
-```
-
-| Service | URL |
-|---|---|
-| Customer chat | http://localhost:3000 |
-| Admin dashboard | http://localhost:3000/admin |
-| Backend API | http://localhost:8000 |
-| Health check | http://localhost:8000/api/health |
-
-### 3. Run locally (without Docker)
+## Run locally (without Docker)
 
 **Backend**
 
@@ -232,4 +208,4 @@ The mock CRM contains 15 customer profiles. Try: `CUST001` through `CUST015`.
 |---|---|---|
 | `GOOGLE_API_KEY` | Yes | Google Gemini API key |
 | `ELEVENLABS_API_KEY` | No | ElevenLabs key for voice input |
-| `ELEVENLABS_VOICE_ID` | No | ElevenLabs voice ID for STT |
+| `ELEVENLABS_VOICE_ID` | No | ElevenLabs voice ID for STT | 
