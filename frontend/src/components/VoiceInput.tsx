@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 interface Props {
   onTranscript: (text: string) => void;
@@ -44,7 +44,11 @@ export default function VoiceInput({ onTranscript, disabled, elevenLabsKey }: Pr
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const chunksRef = useRef<Blob[]>([]);
 
-  const mode = detectMode(elevenLabsKey);
+  const [mode, setMode] = useState<Mode>("unsupported");
+
+  useEffect(() => {
+    setMode(detectMode(elevenLabsKey));
+  }, [elevenLabsKey]);
 
   // ── Native SpeechRecognition ─────────────────────────────────────────────
   const toggleNative = () => {
